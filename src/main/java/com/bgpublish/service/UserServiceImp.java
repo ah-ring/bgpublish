@@ -3,6 +3,9 @@
  */
 package com.bgpublish.service;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,8 @@ import com.bgpublish.mapper.UserMapper;
 public class UserServiceImp implements UserService {
 
 	@Autowired
+	@Setter
+	@Getter
 	private UserMapper userMapper;
 
 	/**

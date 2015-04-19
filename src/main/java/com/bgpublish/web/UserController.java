@@ -3,6 +3,9 @@
  */
 package com.bgpublish.web;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,6 +26,8 @@ import com.bgpublish.service.UserService;
 public class UserController {
 
 	@Autowired
+	@Getter
+	@Setter
 	private UserService userService;
 
 	@RequestMapping(value="/query/{id}", method = RequestMethod.GET)

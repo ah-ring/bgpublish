@@ -34,7 +34,7 @@
     
     <!-- 加载mybatis的实体类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.bgpublish.domain"/>
+        <property name="basePackage" value="com.bgpublish.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 </beans>

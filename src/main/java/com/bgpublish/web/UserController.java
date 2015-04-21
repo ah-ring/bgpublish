@@ -30,7 +30,7 @@ public class UserController {
 	@Setter
 	private UserService userService;
 
-	@RequestMapping(value="/query/{id}", method = RequestMethod.GET)
+	@RequestMapping(value="/query.do", method = RequestMethod.GET)
 	@ResponseBody
 	public User selectUser(String id) {
 

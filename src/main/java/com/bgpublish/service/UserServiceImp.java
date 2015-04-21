@@ -36,7 +36,7 @@ public class UserServiceImp implements UserService {
 	 */
 	@Override
 	public User selectUser(String id) {
-		return this.selectUser(id);
+		return this.userMapper.selectUser(id);
 	}
 
 }

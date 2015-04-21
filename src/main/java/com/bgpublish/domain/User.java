@@ -23,7 +23,7 @@ public class User implements Serializable {
 	
 	@Getter
 	@Setter
-	private int id;
+	private int user_id;
 	
 	@Getter
 	@Setter

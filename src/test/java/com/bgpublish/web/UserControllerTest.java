@@ -36,13 +36,13 @@ import com.bgpublish.domain.User;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = App.class)
 @WebAppConfiguration
-@IntegrationTest({"server.port=0"})
+@IntegrationTest({"server.port=0"})//随机端口
 public class UserControllerTest {
 
 	@Autowired
 	private UserController userController;
 	
-	@Value("${local.server.port}")
+	@Value("${local.server.port}")//获取随机端口号
     private int port;
 
 	private URL base;
@@ -57,6 +57,7 @@ public class UserControllerTest {
 	@Test
 	public void testSelectUser() {
 		
+		//测试selectUser方法是否可用
 		ResponseEntity<String> response =
 				template.getForEntity(this.base.toString() + "/user/query.do?id=1", String.class);
 		
@@ -66,6 +67,7 @@ public class UserControllerTest {
 		
 		
 		try {
+			//此方式与上一种方式一样
 			User user = template.getForObject(this.base.toString() + "/user/query.do?id=1", User.class);
 			assertThat(user.getName(), is("pansen"));
 		} catch (RestClientException e) {

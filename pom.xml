@@ -52,11 +52,11 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<!-- add mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>

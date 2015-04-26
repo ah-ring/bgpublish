@@ -88,6 +88,7 @@ public class UserControllerTest {
 		//测试selectUser方法是否可用
 		String postForObject = "";
 		try {
+			//使用了对象的方式传入request，因此controller的参数必须带上@RequestBody
 			postForObject = template.postForObject(new URI(this.base.toString() + "/user/login.do"), user, String.class);
 		} catch (RestClientException e) {
 			e.printStackTrace();

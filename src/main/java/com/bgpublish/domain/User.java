@@ -32,4 +32,32 @@ public class User implements Serializable {
 	@Getter
 	@Setter
 	private String password;
+
+	@Getter
+	@Setter
+	private String mobile;
+
+	@Getter
+	@Setter
+	private String address;
+
+	@Getter
+	@Setter
+	private String shopName;
+
+	@Getter
+	@Setter
+	private String createTime;
+
+	@Getter
+	@Setter
+	private String userType;
+
+	@Getter
+	@Setter
+	private String qq;
+
+	@Getter
+	@Setter
+	private String weChat;
 }

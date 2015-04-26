@@ -18,4 +18,10 @@ public interface UserMapper {
 	 * @return 返回User对象
 	 */
 	public User selectUser(String id);
+	/**
+	 * 根据手机号码和密码登录
+	 * @param user 用户(主要是手机号码和密码【密文】)
+	 * @return 返回User对象
+	 */
+	public User login(User user);
 }

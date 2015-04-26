@@ -5,6 +5,10 @@
   
 <mapper namespace="com.bgpublish.mapper.UserMapper">
 	<select id="selectUser" resultType="User">
-		select * from User where user_id = #{id}
+		select * from tbl_user where user_id = #{id}
+	</select>
+
+	<select id="login" parameterType="User" resultType="User">
+		SELECT * FROM tbl_user WHERE mobile = #{mobile} and password = #{password} and user_type = #{userType}
 	</select>
 </mapper>

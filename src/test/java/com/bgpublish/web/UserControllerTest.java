@@ -7,8 +7,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,7 +53,7 @@ public class UserControllerTest {
 
 	@Before
 	public void setUp() throws Exception {
-		this.base = new URL("http://localhost:" + this.port);
+		this.base = new URL("http://localhost:" + this.port + "/sgams");
 		template = new TestRestTemplate();
 	}
 
@@ -63,17 +66,36 @@ public class UserControllerTest {
 		
 		assertEquals(HttpStatus.OK , response.getStatusCode());
 		
-		assertThat(response.getBody(),is("{\"user_id\":1,\"name\":\"pansen\",\"password\":\"pansen\"}"));
-		
 		
 		try {
 			//此方式与上一种方式一样
 			User user = template.getForObject(this.base.toString() + "/user/query.do?id=1", User.class);
+			Assert.assertNotNull(user);
 			assertThat(user.getName(), is("pansen"));
 		} catch (RestClientException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Test
+	public void testLogin() {
 		
+		User user = new User();
+		user.setMobile("13533714838");
+		user.setPassword("6506a3d713a63a4586628128b158b053bb80840f");//pansen
+		user.setUserType("0");//卖家
+
+		//测试selectUser方法是否可用
+		String postForObject = "";
+		try {
+			postForObject = template.postForObject(new URI(this.base.toString() + "/user/login.do"), user, String.class);
+		} catch (RestClientException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println(postForObject);
 		
 	}
 }

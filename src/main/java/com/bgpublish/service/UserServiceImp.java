@@ -39,4 +39,13 @@ public class UserServiceImp implements UserService {
 		return this.userMapper.selectUser(id);
 	}
 
+	/**
+	 * 根据手机号码和密码登录
+	 * @param user 用户(主要是手机号码和密码【密文】)
+	 * @return 返回User对象
+	 */
+	@Override
+	public User login(User user){
+		return this.userMapper.login(user);
+	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bgpublish.domain.User;
 import com.bgpublish.service.UserService;
+import com.bgpublish.util.DateUtil;
 
 /**
  * 用户 信息Web Controller
@@ -22,7 +23,7 @@ import com.bgpublish.service.UserService;
  *
  */
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value="/sgams/user")
 public class UserController {
 
 	@Autowired
@@ -35,5 +36,14 @@ public class UserController {
 	public User selectUser(String id) {
 
 		return this.userService.selectUser(id);
+	}
+
+	@RequestMapping(value="/login.do", method = RequestMethod.POST)
+	@ResponseBody
+	public User login(User user) {
+
+		user.setCreateTime(DateUtil.currentTime());
+
+		return this.userService.login(user);
 	}
 }

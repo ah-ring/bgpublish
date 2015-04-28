@@ -34,8 +34,8 @@ public class UserController {
 
 	//APP Status
 	private enum AppStatus{
-		SALEAPP,//0
-		BUYAPP//1
+		SALERAPP,//0
+		BUYERAPP//1
 	}
 	
 	@Autowired
@@ -103,7 +103,7 @@ public class UserController {
 		}
 		
 		//如果是卖家，要判断商家名称和详细地址
-		if(AppStatus.SALEAPP.toString().equals(StringUtil.trim(user.getUser_type()))){
+		if(AppStatus.SALERAPP.toString().equals(StringUtil.trim(user.getUser_type()))){
 			if("".equals(StringUtil.trim(user.getAddress()))){
 				return HttpUtil.createResponseEntity("商家地址不能为空!", HttpStatus.BAD_REQUEST);
 			}

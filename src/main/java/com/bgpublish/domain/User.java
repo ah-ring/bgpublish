@@ -23,7 +23,7 @@ public class User implements Serializable {
 	
 	@Getter
 	@Setter
-	private int userId;
+	private int user_id;
 	
 	@Getter
 	@Setter
@@ -43,15 +43,15 @@ public class User implements Serializable {
 
 	@Getter
 	@Setter
-	private String shopName;
+	private String shop_name;
 
 	@Getter
 	@Setter
-	private String createTime;
+	private String create_time;
 
 	@Getter
 	@Setter
-	private String userType;
+	private String user_type;
 
 	@Getter
 	@Setter
@@ -59,5 +59,9 @@ public class User implements Serializable {
 
 	@Getter
 	@Setter
-	private String weChat;
+	private String we_chat;
+	
+	@Getter
+	@Setter
+	private String old_password;
 }

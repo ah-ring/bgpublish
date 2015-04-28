@@ -4,11 +4,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.bgpublish.mapper.UserMapper">
-	<select id="selectUser" resultType="User">
-		select * from tbl_user where user_id = #{id}
+    <!-- 根据用户ID查询用户信息 -->
+	<select id="selectUserById" resultType="User">
+		SELECT * FROM tbl_user WHERE user_id = #{user_id}
 	</select>
 
+	<!-- 根据手机号码和密码、用户 类型查询用户信息 -->
 	<select id="login" parameterType="User" resultType="User">
-		SELECT * FROM tbl_user WHERE mobile = #{mobile} and password = #{password} and user_type = #{userType}
+		SELECT * FROM tbl_user WHERE mobile = #{mobile} AND password = #{password} AND user_type = #{user_type}
+	</select>
+	
+	<!-- 根据手机号码查询用户信息 -->
+	<select id="selectUserByMobile" resultType="User">
+		SELECT * FROM tbl_user WHERE mobile = #{mobile}
+	</select>
+	
+	<!-- 注册 -->
+	<insert id="register" parameterType="User" >
+		INSERT INTO tbl_user (name,password,mobile,address,shop_name,create_time,user_type,qq,we_chat)
+		VALUES(#{name},#{password},#{mobile},#{address},#{shop_name},#{create_time},#{user_type},#{qq},#{we_chat})
+	</insert>
+	
+	<!-- 修改密码 -->
+	<update id="updatePassWord" parameterType="User">
+		UPDATE tbl_user SET password = #{password} WHERE user_id = #{user_id}
+	</update>
+
+	<!-- 忘记密码 -->
+	<update id="forgetPassword" parameterType="User">
+		UPDATE tbl_user SET password = #{password} WHERE mobile = #{mobile} AND user_type = #{user_type}
+	</update>
+	
+	<!-- 用于修改密码后返回一个boolean，用于controller层判断是否成功 -->
+	<select id="checkUpdatePassword" parameterType="User" resultType="int">
+		SELECT count(*) FROM tbl_user WHERE user_id = #{user_id} AND password = #{password}  AND user_type = #{user_type}
+	</select>
+
+	<!-- 用于忘记密码后返回一个boolean，用于controller层判断是否成功 -->
+	<select id="checkForgetPassword" parameterType="User" resultType="int">
+		SELECT count(*) FROM tbl_user WHERE mobile = #{mobile} AND password = #{password}  AND user_type = #{user_type}
 	</select>
 </mapper>

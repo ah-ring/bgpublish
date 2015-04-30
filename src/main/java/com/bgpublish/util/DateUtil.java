@@ -1,7 +1,8 @@
 package com.bgpublish.util;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import org.apache.commons.lang.time.DateFormatUtils;
 
 /**
  * 日期处理工具类 
@@ -24,9 +25,7 @@ public class DateUtil {
 	 * @return 当前日期
 	 */
 	public static String today(String format){
-		Calendar calendar = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat(format);
-		return sdf.format(calendar.getTime());
+		return DateFormatUtils.format(Calendar.getInstance(), format);
 	}
 
 	/**
@@ -36,4 +35,5 @@ public class DateUtil {
 	public static String currentTime(){
 		return today("yyyyMMddHHmmss");
 	}
+	
 }

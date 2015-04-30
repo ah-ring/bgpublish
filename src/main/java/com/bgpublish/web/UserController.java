@@ -6,6 +6,7 @@ package com.bgpublish.web;
 import lombok.Getter;
 import lombok.Setter;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ import com.bgpublish.domain.User;
 import com.bgpublish.service.UserService;
 import com.bgpublish.util.DateUtil;
 import com.bgpublish.util.HttpUtil;
-import com.bgpublish.util.StringUtil;
+import com.bgpublish.util.Validator;
 
 /**
  * 用户 信息Web Controller
@@ -94,21 +95,29 @@ public class UserController {
 	public ResponseEntity<String> register(@RequestBody User user){
 		
 		//非空检验
-		if("".equals(StringUtil.trim(user.getPassword()))){
+		if("".equals(StringUtils.trimToEmpty(user.getPassword()))){
 			return HttpUtil.createResponseEntity("密码不能为空!", HttpStatus.BAD_REQUEST);
 		}
 		
-		if("".equals(StringUtil.trim(user.getMobile()))){
+		if(!Validator.isPwdLength(user.getPassword())){
+			return HttpUtil.createResponseEntity("密码长度为6到20位!", HttpStatus.BAD_REQUEST);
+		}
+		
+		if(!Validator.isPassword(user.getPassword())){
+			return HttpUtil.createResponseEntity("密码必须为数字和字母!", HttpStatus.BAD_REQUEST);
+		}
+		
+		if("".equals(StringUtils.trimToEmpty(user.getMobile()))){
 			return HttpUtil.createResponseEntity("手机号码不能为空!", HttpStatus.BAD_REQUEST);
 		}
 		
 		//如果是卖家，要判断商家名称和详细地址
-		if(AppStatus.SALERAPP.toString().equals(StringUtil.trim(user.getUser_type()))){
-			if("".equals(StringUtil.trim(user.getAddress()))){
+		if(AppStatus.SALERAPP.toString().equals(StringUtils.trimToEmpty(user.getUser_type()))){
+			if("".equals(StringUtils.trimToEmpty(user.getAddress()))){
 				return HttpUtil.createResponseEntity("商家地址不能为空!", HttpStatus.BAD_REQUEST);
 			}
 			
-			if("".equals(StringUtil.trim(user.getShop_name()))){
+			if("".equals(StringUtils.trimToEmpty(user.getShop_name()))){
 				return HttpUtil.createResponseEntity("商家名称不能为空!", HttpStatus.BAD_REQUEST);
 			}
 		}

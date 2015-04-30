@@ -21,47 +21,25 @@ public class User implements Serializable {
 	 */
 	private static final long serialVersionUID = 1677958995472763643L;
 	
-	@Getter
-	@Setter
-	private int user_id;
+	private @Getter @Setter int user_id;
 	
-	@Getter
-	@Setter
-	private String name;
+	private @Getter @Setter String name;
 	
-	@Getter
-	@Setter
-	private String password;
+	private @Getter @Setter String password;
 
-	@Getter
-	@Setter
-	private String mobile;
+	private @Getter @Setter String mobile;
 
-	@Getter
-	@Setter
-	private String address;
+	private @Getter @Setter String address;
 
-	@Getter
-	@Setter
-	private String shop_name;
+	private @Getter @Setter String shop_name;
 
-	@Getter
-	@Setter
-	private String create_time;
+	private @Getter @Setter String create_time;
 
-	@Getter
-	@Setter
-	private String user_type;
+	private @Getter @Setter String user_type;
 
-	@Getter
-	@Setter
-	private String qq;
+	private @Getter @Setter String qq;
 
-	@Getter
-	@Setter
-	private String we_chat;
+	private @Getter @Setter String we_chat;
 	
-	@Getter
-	@Setter
-	private String old_password;
+	private @Getter @Setter String old_password;
 }

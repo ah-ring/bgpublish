@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bgpublish.mapper.StoreMapper">
+	<!-- 增加商家信息 -->
+	<insert id="addStore" parameterType="Store">
+		INSERT INTO tbl_store_info (user_id,name,address,phone,logo,desc,last_modify_time,create_time)
+		VALUES(#{user_id},#{name},#{address},#{phone},#{logo},#{desc},#{last_modify_time},#{create_time})
+	</insert>
+	
+	<!-- 更新商家信息 -->
+	<update id="updateStore" parameterType="Store">
+		UPDATE tbl_store_info 
+		<set>
+	      <if test="user_id != null">user_id = #{user_id},</if>
+	      <if test="name != null">name = #{name},</if>
+	      <if test="address != null">address = #{address},</if>
+	      <if test="phone != null">phone = #{phone},</if>
+	      <if test="logo != null">logo = #{logo},</if>
+	      <if test="desc != null">desc = #{desc},</if>
+	      <if test="last_modify_time != null">last_modify_time = #{last_modify_time}</if>
+	    </set>
+	    WHERE store_id = #{store_id}
+	</update>
+	
+	<!-- 删除增加商家信息 -->
+	<delete id="deleteStoreById" parameterType="String">
+		DELETE FROM tbl_store_info WHERE store_id = #{store_id}
+	</delete>
+	
+	<!-- 根据商家ID查询商家信息 -->
+	<select id="queryStoreById" parameterType="String" resultType="Store">
+		SELECT * FROM tbl_store_info WHERE store_id = #{store_id}
+	</select>
+</mapper>

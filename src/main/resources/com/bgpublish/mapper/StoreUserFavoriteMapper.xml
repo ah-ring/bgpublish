@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bgpublish.mapper.StoreUserFavoriteMapper">
+	<!-- 增加商家用户收藏信息 -->
+	<insert id="addStoreUserFavorite" parameterType="StoreUserFavorite">
+		INSERT INTO tbl_store_user_favorite (store_id,user_id,create_time)
+		VALUES(#{store_id},#{user_id},#{create_time})
+	</insert>
+	
+	<!-- 删除增加商家用户收藏信息 -->
+	<delete id="deleteStoreUserFavorite" parameterType="StoreUserFavorite">
+		DELETE FROM tbl_store_user_favorite WHERE store_id = #{store_id} and user_id=#{user_id}
+	</delete>
+	
+	<!-- 根据用户ID查询商家用户收藏信息 -->
+	<select id="queryByUserId" parameterType="String" resultType="StoreUserFavorite">
+		SELECT * FROM tbl_store_user_favorite WHERE user_id = #{user_id}
+	</select>
+	
+	<!-- 根据商家ID查询商家用户收藏信息 -->
+	<select id="queryByStoreId" parameterType="String" resultType="StoreUserFavorite">
+		SELECT * FROM tbl_store_user_favorite WHERE store_id = #{store_id}
+	</select>
+	
+	<!-- 根据商家ID统计商家用户收藏数 -->
+	<select id="countUserByStoreId" parameterType="String" resultType="int">
+		SELECT count(*) FROM tbl_store_user_favorite WHERE store_id = #{store_id}
+	</select>
+	
+</mapper>

@@ -39,10 +39,7 @@ public class UserController {
 		BUYERAPP//1
 	}
 	
-	@Autowired
-	@Getter
-	@Setter
-	private UserService userService;
+	private @Autowired @Getter @Setter UserService userService;
 
 	/**
 	 * 根据用户ID查询用户 信息

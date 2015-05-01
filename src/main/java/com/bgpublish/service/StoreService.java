@@ -1,17 +1,17 @@
 /**
  * 
  */
-package com.bgpublish.mapper;
+package com.bgpublish.service;
 
 import com.bgpublish.domain.Store;
 
 /**
- * 商家Mapper
- * @author ps
+ * 商家 服务信息接口
+ * 
+ * @author pansen
  *
  */
-public interface StoreMapper {
-	
+public interface StoreService {
 	/**
 	 * 新增商家
 	 * @param store 商家信息

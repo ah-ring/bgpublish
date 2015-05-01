@@ -21,10 +21,7 @@ import com.bgpublish.mapper.UserMapper;
 @Service
 public class UserServiceImp implements UserService {
 
-	@Autowired
-	@Setter
-	@Getter
-	private UserMapper userMapper;
+	private  @Autowired @Getter @Setter UserMapper userMapper;
 
 	/**
 	 * 根据用户Id查询用户信息

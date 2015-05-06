@@ -34,4 +34,9 @@
 	<select id="queryStoreById" parameterType="String" resultType="Store">
 		SELECT * FROM tbl_store_info WHERE store_id = #{store_id}
 	</select>
+	
+	<!-- 根据用户ID查询商家信息 -->
+	<select id="queryStoreByUserId" parameterType="String" resultType="Store">
+		SELECT * FROM tbl_store_info WHERE user_id = #{user_id}
+	</select>
 </mapper>

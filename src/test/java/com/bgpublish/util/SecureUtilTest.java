@@ -26,8 +26,10 @@ public class SecureUtilTest {
 	@Test
 	public void testShaEncode(){
 		String sha = SecureUtil.shaEncode("helloworld");
+		String sha1 = SecureUtil.shaEncode("testsaleapp");
 		
 		System.err.println(sha);
+		System.err.println(sha1);
 		Assert.assertThat(sha, CoreMatchers.is("6adfb183a4a2c94a2f92dab5ade762a47889a5a1"));
 	}
 }

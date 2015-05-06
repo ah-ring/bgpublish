@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bgpublish.mapper.GalleryMapper">
+	<!-- 增加图片 -->
+	<insert id="addGallery" parameterType="Gallery">
+		INSERT INTO tbl_merch_gallery (merch_id,name,file_name,path,create_time)
+		VALUES (#{merch_id},#{name},#{file_name},#{path},#{create_time})
+	</insert>
+	
+	<!-- 删除图片 -->
+	<delete id="deleteGallery" parameterType="String">
+		DELETE FROM tbl_merch_gallery WHERE gallery_id=#{gallery_id}
+	</delete>
+	
+	<!-- 更新图片 -->
+	<update id="updateGallery" parameterType="Gallery">
+		UPDATE tbl_merch_gallery
+		SET merch_id=#{merch_id},
+		name=#{name},
+		file_name=#{file_name},
+		path=#{path}
+		WHERE gallery_id=#{gallery_id}
+	</update>
+	
+	<!-- 根据ID查询图片 -->
+	<select id="queryById" parameterType="String" resultType="Gallery">
+		SELECT * FROM tbl_merch_gallery WHERE gallery_id=#{gallery_id}
+	</select>
+	
+	<!-- 根据商品ID查询图片 -->
+	<select id="queryByMerchId" parameterType="String" resultType="Gallery">
+		SELECT * FROM tbl_merch_gallery WHERE merch_id=#{merch_id}
+	</select>
+</mapper>

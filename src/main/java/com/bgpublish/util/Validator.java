@@ -12,6 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.time.DateFormatUtils;
 
 /**
  * 校验类
@@ -38,7 +39,7 @@ public class Validator {
 	 * @param ipv4
 	 * @return
 	 */
-	public static boolean isIP(String ipv4) {
+	public static boolean isIPV4(String ipv4) {
 		String num = "(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)";
 		String regex = "^" + num + "\\." + num + "\\." + num + "\\." + num + "$";
 		return match(regex, ipv4);
@@ -75,12 +76,12 @@ public class Validator {
 	}
 
 	/**
-	 * 校验密码是否为数字和字母
+	 * 校验密码是否为字母开头，包括字母、数字、下划线
 	 * @param pwd
 	 * @return
 	 */
 	public static boolean isPassword(String pwd) {
-		String regex = "[A-Za-z]+[0-9]";
+		String regex = "^[a-zA-Z]\\w+";
 		return match(regex, pwd);
 	}
 
@@ -105,26 +106,72 @@ public class Validator {
 	}
 
 	/**
+	 * 验证手机号码
+	 * @param mobile
+	 * @return
+	 */
+	public static boolean isMobile(String mobile) {
+		String regex = "^[0,1]+[3,8,5,7]+\\d{9}$";
+		return match(regex, mobile);
+	}
+
+	/**
+	 * 验证身份证号码
+	 * @param idCard 身份证号码
+	 * @return
+	 */
+	public static boolean isIDcard(String idCard) {
+		byte []wi = {7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2,1};
+		byte []valideCode = {1,0,10,9,8,7,6,5,4,3,2};
+		
+		if(StringUtils.isBlank(idCard)){
+			return true;
+		}
+		
+		if(idCard.length() != 15 && idCard.length() != 18){
+			return false;
+		}
+		
+		String birthday = "";
+		String format = "";
+		if(idCard.length() == 15){
+			birthday = idCard.substring(6, 12);
+			format = "yyMMdd";
+		}else if(idCard.length() == 18){
+			birthday = idCard.substring(6, 14);
+			format = "yyyyMMdd";
+		}
+		
+		if(!birthday.equals(DateFormatUtils.format(DateUtil.parseDate(birthday, new String[]{format}), format))){
+			return false;
+		}
+		
+		if(idCard.length() == 18){
+			int sum = 0;
+			
+			for (int i = 0; i < 17; i++) {
+				sum += wi[i] * Byte.parseByte(idCard.charAt(i)+"");//加权求和
+			}
+			
+			int valCodePostion = sum % 11;//得到验证码位置
+			byte last = idCard.charAt(17) == 'X' ? 10 : Byte.parseByte(idCard.charAt(17)+"");
+			if(valideCode[valCodePostion] != last){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * 
 	 * @param str
 	 * @return
 	 */
-	public static boolean isHandset(String str) {
-		String regex = "^[0,1]+[3,5]+\\d{9}$";
-		// String regex = "^\\d{1,18}$";
-		return match(regex, str);
-	}
-
-	public static boolean isIDcard(String str) {
-		String regex = "(^\\d{18}$)|(^\\d{15}$)";
-		return match(regex, str);
-	}
-
 	public static boolean isDecimal(String str) {
 		String regex = "^[\\-\\+]?[0123456789]+(.[0123456789]*)?$";
 		if (match(regex, str)) {
 			try {
-				double a = Double.parseDouble(str);
+				Double.parseDouble(str);
 			} catch (Exception e) {
 				return false;
 			}
@@ -202,9 +249,14 @@ public class Validator {
 		return match(regex, str);
 	}
 
-	public static boolean isChinese(String str) {
-		String regex = "^[\u4e00-\u9fa5],{0,}$";
-		return match(regex, str);
+	/**
+	 * 判断输入的字符串是否全为中文
+	 * @param chinese 中文
+	 * @return
+	 */
+	public static boolean isChinese(String chinese) {
+		String regex = "[\u4e00-\u9fa5]+";
+		return match(regex, chinese);
 	}
 
 	public static boolean isLength(String str) {
@@ -215,7 +267,7 @@ public class Validator {
 	private static boolean match(String regex, String str) {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(str);
-		return matcher.lookingAt();
+		return matcher.matches();
 	}
 
 	public static boolean checkHtmlTag(String str) {
@@ -263,7 +315,7 @@ public class Validator {
 	}
 
 	public static boolean isRepeat(String[] strs) {
-		ArrayList search = new ArrayList();
+		ArrayList<String> search = new ArrayList<String>();
 		for (int i = 0; i < strs.length; i++) {
 			String str = strs[i];
 			if ("".equals(str)) {

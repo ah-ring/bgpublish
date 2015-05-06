@@ -33,4 +33,10 @@ public interface StoreMapper {
 	 * @return 返回商家信息
 	 */
 	public Store queryStoreById(String store_id);
+	/**
+	 * 根据用户ID查询商家
+	 * @param user_id 用户ID
+	 * @return 返回商家信息
+	 */
+	public Store queryStoreByUserId(String user_id);
 }

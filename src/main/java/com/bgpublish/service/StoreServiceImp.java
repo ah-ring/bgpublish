@@ -26,6 +26,7 @@ public class StoreServiceImp implements StoreService {
 	 * 新增商家
 	 * @param store 商家信息
 	 */
+	@Override
 	public void addStore(Store store){
 		this.storeMapper.addStore(store);
 	}
@@ -33,6 +34,7 @@ public class StoreServiceImp implements StoreService {
 	 * 更新商家信息
 	 * @param store 商家信息
 	 */
+	@Override
 	public void updateStore(Store store){
 		this.storeMapper.updateStore(store);
 	}
@@ -40,6 +42,7 @@ public class StoreServiceImp implements StoreService {
 	 * 根据商家ID删除商家
 	 * @param store_id 商家ID
 	 */
+	@Override
 	public void deleteStoreById(String store_id){
 		this.storeMapper.deleteStoreById(store_id);
 	}
@@ -48,7 +51,18 @@ public class StoreServiceImp implements StoreService {
 	 * @param store_id 商家ID
 	 * @return 返回商家信息
 	 */
+	@Override
 	public Store queryStoreById(String store_id){
 		return this.storeMapper.queryStoreById(store_id);
+	}
+	
+	/**
+	 * 根据用户ID查询商家
+	 * @param user_id 用户ID
+	 * @return 返回商家信息
+	 */
+	@Override
+	public Store queryStoreByUserId(String user_id){
+		return this.storeMapper.queryStoreByUserId(user_id);
 	}
 }

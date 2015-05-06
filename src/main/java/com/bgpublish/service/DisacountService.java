@@ -1,0 +1,39 @@
+/**
+ * 
+ */
+package com.bgpublish.service;
+
+import java.util.List;
+
+import com.bgpublish.domain.MerchDisacount;
+
+/**
+ * 商品优惠信息服务接口
+ * @author ps
+ *
+ */
+public interface DisacountService {
+	/**
+	 * 新增商品优惠信息
+	 * @param merchDisacount 商品优惠信息
+	 */
+	public void addDisacount(MerchDisacount merchDisacount);
+	
+	/**
+	 * 根据商品优惠ID删除商品优惠信息
+	 * @param diacount_id 商品优惠ID
+	 */
+	public void deleteDisacountById(String diacount_id);
+	
+	/**
+	 * 更新商品优惠信息
+	 * @param merchDisacount 商品优惠信息
+	 */
+	public void updateDisacount(MerchDisacount merchDisacount);
+	
+	/**
+	 * 根据商品ID查询商品优惠信息
+	 * @param merch_id 商品ID
+	 */
+	public List<MerchDisacount> queryByMerchId(String merch_id);
+}

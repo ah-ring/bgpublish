@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bgpublish.mapper.DisacountMapper">
+	<insert id="addDisacount" parameterType="MerchDisacount">
+		INSERT INTO tbl_merch_disacount_info(merch_id,disacount_money,disacount,disacount_date,effective_date,create_time)
+		VALUES(#{merch_id},#{disacount_money},#{disacount},#{disacount_date},#{effective_date},#{create_time})
+	</insert>
+	
+	<!-- 根据ID删除商品优惠信息 -->
+	<delete id="deleteDisacountById"  parameterType="String" >
+		DELETE FROM tbl_merch_disacount_info WHERE disacount_id=#{disacount_id}
+	</delete>
+	
+	<!-- 更新商品优惠信息 -->
+	<update id="updateDisacount" parameterType="MerchDisacount">
+		UPDATE tbl_merch_disacount_info
+		SET merch_id=#{merch_id},
+		disacount_money=#{disacount_money},
+		disacount=#{disacount},
+		disacount_date=#{disacount_date},
+		effective_date=#{effective_date}
+		WHERE disacount_id=#{disacount_id}
+	</update>
+	
+	<!-- 根据商品ID查询商品优惠信息 -->
+	<select id="queryByMerchId" parameterType="String" resultType="MerchDisacount">
+		SELECT * FROM tbl_merch_disacount_info WHERE merch_id=#{merch_id}
+	</select>
+</mapper>

@@ -66,6 +66,6 @@ public class ValidatorTest {
 	public void testIdCard(){
 		Assert.assertEquals(true, Validator.isIDcard("440982198610034956"));
 		
-		Assert.assertEquals(true, Validator.isIDcard("140982198610034955"));
+		Assert.assertEquals(false, Validator.isIDcard("140982198610034958"));
 	}
 }

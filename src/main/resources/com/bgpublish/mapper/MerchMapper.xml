@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.bgpublish.mapper.MerchMapper">
+	<!-- 增加商品信息 -->
+	<insert id="addMerch" parameterType="Merch">
+		INSERT INTO tbl_merch_info (store_id,name,classify_id,price,in_stock,published_date,out_published,last_modify_time,create_time)
+		VALUES (#{store_id},#{name},#{classify_id},#{price},#{in_stock},#{published_date},#{out_published},#{last_modify_time},#{create_time})
+	</insert>
+	
+	<!-- 更新商品信息 -->
+	<update id="updateMerch" parameterType="Merch">
+		UPDATE tbl_merch_info 
+		<set>
+	      <if test="store_id != null">store_id = #{store_id},</if>
+	      <if test="name != null">name = #{name},</if>
+	      <if test="classify_id != null">classify_id = #{classify_id},</if>
+	      <if test="price != null">price = #{price},</if>
+	      <if test="in_stock != null">in_stock = #{in_stock},</if>
+	      <if test="published_date != null">published_date = #{published_date},</if>
+	      <if test="out_published != null">out_published = #{out_published},</if>
+	      <if test="last_modify_time != null">last_modify_time = #{last_modify_time}</if>
+	    </set>
+	    WHERE merch_id = #{merch_id}
+	</update>
+	
+	<!-- 删除商品信息 -->
+	<delete id="deleteMerchById" parameterType="String">
+		DELETE FROM tbl_merch_info WHERE merch_id = #{merch_id}
+	</delete>
+	
+	<!-- 删除商品信息 -->
+	<delete id="deleteMerchByStoreId" parameterType="String">
+		DELETE FROM tbl_merch_info WHERE store_id = #{store_id}
+	</delete>
+	
+	<!-- 根据商品ID查询商品信息 -->
+	<select id="queryMerchById" parameterType="String" resultType="Merch">
+		SELECT * FROM tbl_merch_info WHERE merch_id = #{merch_id}
+	</select>
+	
+	<!-- 根据商品ID查询商品信息 -->
+	<select id="queryMerchByStoreId" parameterType="String" resultType="Merch">
+		SELECT * FROM tbl_merch_info WHERE store_id = #{store_id}
+	</select>
+	
+	<!-- 根据用户ID查询商品信息 -->
+	<select id="queryMerchByUserId" parameterType="String" resultType="Merch">
+		SELECT a.* FROM tbl_merch_info a LEFT JOIN tbl_store_info b ON a.store_id = b.store_id 
+		WHERE b.user_id = #{user_id}
+	</select>
+</mapper>

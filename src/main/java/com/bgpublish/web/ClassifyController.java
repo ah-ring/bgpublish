@@ -42,6 +42,14 @@ public class ClassifyController {
 		return list;
 	}
 	
+	@RequestMapping(value="/queryby.do", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Classify> queryClassifyBy(String classify_type){
+		List<Classify> list = this.classifyService.queryClassifyBy(classify_type);
+		
+		return list;
+	}
+	
 	@RequestMapping(value="/add.do", method = RequestMethod.POST)
 	public ResponseEntity<String> addClassify(@RequestBody Classify classify){
 		try{

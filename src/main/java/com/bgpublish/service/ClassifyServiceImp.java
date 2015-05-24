@@ -48,4 +48,13 @@ public class ClassifyServiceImp implements ClassifyService {
 		return this.classifyMapper.queryClassify();
 	}
 
+	/**
+	 * 根据分类类型查询所有分类
+	 * @param classify_type
+	 * @return 分类
+	 */
+	@Override
+	public List<Classify> queryClassifyBy(String classify_type) {
+		return this.classifyMapper.queryClassifyByType(classify_type);
+	}
 }

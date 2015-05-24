@@ -28,4 +28,10 @@ public interface ClassifyMapper {
 	 * @return 分类
 	 */
 	public List<Classify> queryClassify();
+	/**
+	 * 根据分类类型查询所有分类
+	 * @param classifyType
+	 * @return 分类
+	 */
+	public List<Classify> queryClassifyByType(String classify_type);
 }

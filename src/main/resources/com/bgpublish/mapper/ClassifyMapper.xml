@@ -18,4 +18,9 @@
 	<select id="queryClassify" resultType="Classify">
 		select * from tbl_classify_info
 	</select>
+	
+	<!-- 根据分类类型查询所有分类  -->
+	<select id="queryClassifyByType" resultType="Classify" parameterType="String">
+		select * from tbl_classify_info where classify_type=#{classify_type}
+	</select>
 </mapper>

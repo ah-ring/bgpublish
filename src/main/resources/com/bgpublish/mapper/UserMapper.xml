@@ -21,8 +21,8 @@
 	
 	<!-- 注册 -->
 	<insert id="register" parameterType="User" >
-		INSERT INTO tbl_user (name,password,mobile,address,shop_name,create_time,user_type,qq,we_chat)
-		VALUES(#{name},#{password},#{mobile},#{address},#{shop_name},#{create_time},#{user_type},#{qq},#{we_chat})
+		INSERT INTO tbl_user (name,password,mobile,create_time,user_type,qq,we_chat)
+		VALUES(#{name},#{password},#{mobile},#{create_time},#{user_type},#{qq},#{we_chat})
 	</insert>
 	
 	<!-- 修改密码 -->

@@ -51,4 +51,22 @@
 		SELECT a.* FROM tbl_merch_info a LEFT JOIN tbl_store_info b ON a.store_id = b.store_id 
 		WHERE b.user_id = #{user_id}
 	</select>
+	<!-- 根据输入的条件（包括用户ID、是否下架、分类等）查询商品信息 -->
+	<select id="queryMerchBy" parameterType="Merch" resultType="Merch">
+		SELECT a.* FROM tbl_merch_info a LEFT JOIN tbl_store_info b ON a.store_id = b.store_id 
+		<where>
+			<if test="user_id gt 0">
+				b.user_id = #{user_id}
+			</if>
+			<if test="out_published != null">
+				AND a.out_published = #{out_published}
+			</if>
+			<if test="classify_id != null">
+				AND a.classify_id = #{classify_id}
+			</if>
+		</where>
+		<if test="order_by_clause != null">
+			ORDER BY ${order_by_clause}
+		</if>
+	</select>
 </mapper>

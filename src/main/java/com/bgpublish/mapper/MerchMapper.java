@@ -51,4 +51,10 @@ public interface MerchMapper {
 	 * @return
 	 */
 	public List<Merch> queryMerchByUserId(String user_id);
+	/**
+	 * 根据输入的条件（包括用户ID、是否下架、分类等）查询商品信息
+	 * @param merch 商品信息
+	 * @return
+	 */
+	public List<Merch> queryMerchBy(Merch merch);
 }

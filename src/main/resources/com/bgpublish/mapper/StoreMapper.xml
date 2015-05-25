@@ -20,6 +20,7 @@
 	      <if test="phone != null">phone = #{phone},</if>
 	      <if test="logo != null">logo = #{logo},</if>
 	      <if test="desc != null">desc = #{desc},</if>
+	      <if test="classify_id != null">classify_id = #{classify_id},</if>
 	      <if test="last_modify_time != null">last_modify_time = #{last_modify_time}</if>
 	    </set>
 	    WHERE store_id = #{store_id}

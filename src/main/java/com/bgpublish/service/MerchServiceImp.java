@@ -76,4 +76,13 @@ public class MerchServiceImp implements MerchService {
 		return this.merchMapper.queryMerchByUserId(user_id);
 	}
 
+	/**
+	 * 根据输入的条件（包括用户ID、是否下架、分类等）查询商品信息
+	 * @param merch 商品信息
+	 * @return
+	 */
+	@Override
+	public List<Merch> queryMerchBy(Merch merch) {
+		return this.merchMapper.queryMerchBy(merch);
+	}
 }

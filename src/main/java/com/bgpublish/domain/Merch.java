@@ -29,4 +29,5 @@ public class Merch  implements Serializable{
 	private @Getter @Setter String out_published;
 	private @Getter @Setter String last_modify_time;
 	private @Getter @Setter String create_time;
+	private @Getter @Setter String order_by_clause;
 }

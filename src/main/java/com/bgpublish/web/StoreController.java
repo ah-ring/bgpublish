@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bgpublish.domain.Store;
 import com.bgpublish.service.StoreService;
 import com.bgpublish.util.HttpUtil;
+import com.bgpublish.util.DateUtil;
 
 /**
  * 商家信息Web Controller
@@ -63,6 +64,7 @@ public class StoreController {
 	@RequestMapping(value="/modify.do", method = RequestMethod.POST)
 	public ResponseEntity<String> updateStore(@RequestBody Store store){
 		try{
+			store.setLast_modify_time(DateUtil.today("yyyyMMddHHmmss"));
 			this.storeService.updateStore(store);
 		}catch(Exception e){
 			e.printStackTrace();

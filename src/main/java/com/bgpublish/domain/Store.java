@@ -26,6 +26,7 @@ public class Store implements Serializable {
 	private @Getter @Setter String phone;
 	private @Getter @Setter String logo;
 	private @Getter @Setter String desc;
+	private @Getter @Setter String classify_id;
 	private @Getter @Setter String last_modify_time;
 	private @Getter @Setter String create_time;
 }

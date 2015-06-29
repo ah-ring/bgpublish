@@ -57,6 +57,24 @@ public class MerchController {
 		return HttpUtil.createResponseEntity("更新商品成功!", HttpStatus.OK);
 	}
 	
+	/**
+	 * 批量更新商品信息
+	 * @param merchList 商品列表
+	 * @return 更新状态
+	 */
+	@RequestMapping(value="/modifyBatch.do", method = RequestMethod.POST)
+	public ResponseEntity<String> updateMerchBatch(@RequestBody List<Merch> merchList){
+		try{
+			this.merchService.updateMerchBatch(merchList);
+		}catch(Exception e){
+			e.printStackTrace();
+			return HttpUtil.createResponseEntity("更新商品失败!", HttpStatus.BAD_REQUEST);
+		}
+		
+		return HttpUtil.createResponseEntity("更新商品成功!", HttpStatus.OK);
+	}
+	
+	
 	@RequestMapping(value="/deletebyid.do", method = RequestMethod.GET)
 	public ResponseEntity<String> deleteMerchById(String merch_id){
 		try{
